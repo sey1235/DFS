@@ -1,0 +1,29 @@
+@startuml
+
+state "Idle" as state0
+state0 : other_hero: Ask to join!
+
+
+state "Join" as state1
+state1 : main_code: QR
+state1 : main_code1: wireless-communication
+
+state "Follow" as state2
+state2 : main_code2: GPS
+state2 : other_hero: LIDAR
+
+state "Leave" as state3
+state3 : main_code3: Exit
+
+state "No-Connection" as state4
+state4 : main_code3: Lost
+
+state0 --> state1: request to join
+state1 --> state2: trucks joined and following the main-one
+state2 --> state3: When there is decoupling the truck exit the platoon
+
+state0--> state4: Truck no recognized
+state1 --> state4: Not able to join
+state2 --> state4: Loss of Communication
+state3 --> state4: Emergency case
+@enduml
